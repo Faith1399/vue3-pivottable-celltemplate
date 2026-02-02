@@ -1,19 +1,20 @@
 <template>
-  <ejs-pivotview id="pivotview" ref="pivotview" :dataSourceSettings="dataSourceSettings" :height="height" :width="width" :dataBound="trend" :cellTemplate="cellTemplate"></ejs-pivotview>
+  <ejs-pivotview id="pivotview" ref="pivotview" :dataSourceSettings="dataSourceSettings" :height="height" :dataBound="trend" :cellTemplate="cellTemplate"></ejs-pivotview>
 </template>
 
 <script>
   import { PivotViewComponent } from "@syncfusion/ej2-vue-pivotview";
   import { createApp } from 'vue/dist/vue.esm-bundler';
-  import "../node_modules/@syncfusion/ej2-base/styles/material.css";
-  import "../node_modules/@syncfusion/ej2-inputs/styles/material.css";
-  import "../node_modules/@syncfusion/ej2-buttons/styles/material.css";
-  import "../node_modules/@syncfusion/ej2-dropdowns/styles/material.css";
-  import "../node_modules/@syncfusion/ej2-lists/styles/material.css";
-  import "../node_modules/@syncfusion/ej2-popups/styles/material.css";
-  import "../node_modules/@syncfusion/ej2-navigations/styles/material.css";
-  import "../node_modules/@syncfusion/ej2-grids/styles/material.css";
-  import "../node_modules/@syncfusion/ej2-vue-pivotview/styles/material.css";
+  import "../node_modules/@syncfusion/ej2-base/styles/tailwind3.css";
+  import "../node_modules/@syncfusion/ej2-inputs/styles/tailwind3.css";
+  import "../node_modules/@syncfusion/ej2-buttons/styles/tailwind3.css";
+  import "../node_modules/@syncfusion/ej2-dropdowns/styles/tailwind3.css";
+  import "../node_modules/@syncfusion/ej2-lists/styles/tailwind3.css";
+  import "../node_modules/@syncfusion/ej2-popups/styles/tailwind3.css";
+  import "../node_modules/@syncfusion/ej2-navigations/styles/tailwind3.css";
+  import "../node_modules/@syncfusion/ej2-splitbuttons/styles/tailwind3.css";
+  import "../node_modules/@syncfusion/ej2-grids/styles/tailwind3.css";
+  import "../node_modules/@syncfusion/ej2-vue-pivotview/styles/tailwind3.css";
 
   const app = createApp();
 
@@ -39,8 +40,8 @@
     },
     data() {
       return {
-      dataSourceSettings: {
-          dataSource: [
+        dataSourceSettings: {
+          dataSource:  [
             { 'Sold': 31, 'Amount': 52824, 'Country': 'France', 'Products': 'Mountain Bikes', 'Year': 'FY 2015', 'Quarter': 'Q1' },
             { 'Sold': 51, 'Amount': 86904, 'Country': 'France', 'Products': 'Mountain Bikes', 'Year': 'FY 2015', 'Quarter': 'Q2' },
             { 'Sold': 90, 'Amount': 153360, 'Country': 'France', 'Products': 'Mountain Bikes', 'Year': 'FY 2015', 'Quarter': 'Q3' },
@@ -198,82 +199,79 @@
             { 'Sold': 45, 'Amount': 71797.5, 'Country': 'United Kingdom', 'Products': 'Touring Bikes', 'Year': 'FY 2018', 'Quarter': 'Q1' },
             { 'Sold': 80, 'Amount': 127640, 'Country': 'United States', 'Products': 'Touring Bikes', 'Year': 'FY 2018', 'Quarter': 'Q1' }
           ],
-          rows: [{ name: 'Country' }],
-          columns: [{ name: 'Year' }],
-          values: [{ name: 'Amount' }, { name: 'Total', type: 'CalculatedField' }],
-          formatSettings: [{ name: 'Amount', format: 'C1' }],
+          rows: [{ name: "Country" }],
+          columns: [{ name: "Year" }],
+          values: [{ name: "Amount" }, { name: "Total", type: 'CalculatedField' }],
+          formatSettings: [{ name: "Amount", format: "C1" }],
           calculatedFieldSettings: [{ name: 'Total', formula: '"Sum(Amount)"+"Sum(Sold)"' }]
         },
         height: 350,
-        width: '100%',
         cellTemplate: function () {
           return { template: colVue };
-        }
+        },
       };
     },
     methods: {
       trend: function () {
-        let pivotGridObj = this.$refs.pivotview.ej2Instances;
-        var cTable = document.getElementsByClassName("e-table");
-        var colLen = pivotGridObj.pivotValues[3].length;
-        var cLen = cTable[3].children[0].children.length;
-        var rLen = cTable[3].children[1].children.length;
+        let pivotObj = ((this).$refs.pivotview).ej2Instances;
+        let cTable = [].slice.call(document.getElementsByClassName("e-table"));
+        let colLen = pivotObj.pivotValues[3].length;
+        let cLen = cTable[1].children[0].children.length - 1;
+        let rLen = cTable[1].children[1].children.length;
+        let rowIndx;
+
         for (let k = 0; k < rLen; k++) {
-          if (
-            pivotGridObj.pivotValues[k] &&
-            pivotGridObj.pivotValues[k][0] !== undefined
-          ) {
+          if (pivotObj.pivotValues[k] && pivotObj.pivotValues[k][0] !== undefined) {
+            rowIndx = (pivotObj.pivotValues[k][0]).rowIndex;
             break;
           }
         }
-        var rowHeaders = [].slice.call(
-          cTable[2].children[1].querySelectorAll("td")
-        );
-        var rows = pivotGridObj.dataSourceSettings.rows;
+        let rowHeaders = [].slice.call(cTable[1].children[1].querySelectorAll('.e-rowsheader'));
+        let rows = pivotObj.dataSourceSettings.rows;
         if (rowHeaders.length > 1) {
-          for (var i = 0, Cnt = rows; i < Cnt.length; i++) {
-            var fields = {};
-            var fieldHeaders = [];
-            for (var j = 0, Lnt = rowHeaders; j < Lnt.length; j++) {
-              var header = rowHeaders[j];
-              if (
-                header.className.indexOf("e-gtot") === -1 &&
-                header.className.indexOf("e-rowsheader") > -1 &&
-                header.getAttribute("fieldname") === rows[i].name
-              ) {
-                fields[rowHeaders[j].textContent] = j;
+          for (let i = 0, Cnt = rows; i < Cnt.length; i++) {
+            let fields = {};
+            let fieldHeaders = [];
+            for (let j = 0, Lnt = rowHeaders; j < Lnt.length; j++) {
+              let header = rowHeaders[j];
+              if (header.className.indexOf("e-gtot") === -1 && header.className.indexOf("e-rowsheader") > -1 &&
+                header.getAttribute("fieldname") === rows[i].name) {
+                var headerName = rowHeaders[j].getAttribute("fieldname") + "_" + rowHeaders[j].textContent;
+                fields[(rowHeaders[j]).textContent] = j;
                 fieldHeaders.push(rowHeaders[j].textContent);
               }
             }
             if (i === 0) {
-              for (var rnt = 0, Lnt1 = fieldHeaders; rnt < Lnt1.length; rnt++) {
+              for (let rnt = 0, Lnt = fieldHeaders; rnt < Lnt.length; rnt++) {
                 if (rnt !== 0) {
-                  var row = fields[fieldHeaders[rnt]];
-                  var prevRow = fields[fieldHeaders[rnt - 1]];
-                  for (var k = 0, ci = 1; k < cLen && ci < colLen; k++, ci++) {
-                    var node = cTable[3].children[1].children[row].childNodes[k];
-                    var prevNode =
-                      cTable[3].children[1].children[prevRow].childNodes[k];
-                    var ri = node.getAttribute("index");
-                    var prevRi = prevNode.getAttribute("index");
-                    if (ri < pivotGridObj.pivotValues.length) {
-                      if (
-                        pivotGridObj.pivotValues[prevRi][ci].value >
-                          pivotGridObj.pivotValues[ri][ci].value &&
-                        node.querySelector(".tempwrap")
-                      ) {
-                        var trendElement = node.querySelector(".tempwrap");
+                  let row = fields[fieldHeaders[rnt]];
+                  let prevRow = fields[fieldHeaders[rnt - 1]];
+                  for (let j = 1, ci = 1; j < cLen && ci < colLen; j++, ci++) {
+                    if (!cTable[1].children[1].children[row]) {
+                        break;
+                    }
+                    let node = cTable[1].children[1].children[row].childNodes[j];
+                    let prevNode = cTable[1].children[1].children[prevRow].childNodes[j];
+                    let ri = undefined;
+                    let prevRi = undefined;
+                    if (node) {
+                      ri = node.getAttribute("index");
+                    }
+                    if (prevNode) {
+                      prevRi = prevNode.getAttribute("index");
+                    }
+                    if (ri && ri < [].slice.call(pivotObj.pivotValues).length) {
+                      if (((pivotObj.pivotValues[prevRi][ci]).value) > ((pivotObj.pivotValues[ri][ci]).value) && node.querySelector(".tempwrap")) {
+                        let trendElement = node.querySelector(".tempwrap");
                         trendElement.className = trendElement.className.replace(
                           "sb-icon-neutral",
                           "sb-icon-loss"
                         );
                       } else if (
-                        pivotGridObj.pivotValues[prevRi][ci].value <
-                          pivotGridObj.pivotValues[ri][ci].value &&
-                        node.querySelector(".tempwrap")
+                        ((pivotObj.pivotValues[prevRi][ci]).value) < ((pivotObj.pivotValues[ri][ci]).value) && node.querySelector(".tempwrap")
                       ) {
-                        var trendElement1 = node.querySelector(".tempwrap");
-                        trendElement1.className = trendElement1.className.replace(
+                        let trendElement = node.querySelector(".tempwrap");
+                        trendElement.className = trendElement.className.replace(
                           "sb-icon-neutral",
                           "sb-icon-profit"
                         );
@@ -282,10 +280,50 @@
                   }
                 }
               }
+            } else {
+              for (let rnt = 0, Lnt = fieldHeaders; rnt < Lnt.length; rnt++) {
+                var row = fields[fieldHeaders[rnt]];
+                for (let j = 1, ci = 1; j < cLen && ci < colLen; j++, ci++) {
+                  if (!cTable[1].children[1].children[row]) {
+                      break;
+                  }
+                  let node = cTable[1].children[1].children[row].childNodes[j];
+                  let prevNode = cTable[1].children[1].children[row - 1].childNodes[j];
+                  let ri = undefined;
+                  let prevRi = undefined;
+                  if (node) {
+                    ri = node.getAttribute("index");
+                  }
+                  if (prevNode) {
+                    prevRi = prevNode.getAttribute("index");
+                  }
+                  if (ri && ri < [].slice.call(pivotObj.pivotValues).length) {
+                    let cRowFieldName = (cTable[1].children[1].children[row].childNodes[0]).getAttribute("fieldname");
+                    let prevRowFieldName = (cTable[1].children[1].children[row - 1].childNodes[0]).getAttribute("fieldname");
+                    if (((pivotObj.pivotValues[prevRi][ci]).value) > ((pivotObj.pivotValues[ri][ci]).value) &&
+                      node.querySelector(".tempwrap") && cRowFieldName === prevRowFieldName) {
+                      let trendElement = node.querySelector(".tempwrap");
+                      trendElement.className = trendElement.className.replace(
+                        "sb-icon-neutral",
+                        "sb-icon-loss"
+                      );
+                    } else if (
+                      ((pivotObj.pivotValues[prevRi][ci]).value) < ((pivotObj.pivotValues[ri][ci]).value) &&
+                      node.querySelector(".tempwrap") && cRowFieldName === prevRowFieldName
+                    ) {
+                      let trendElement = node.querySelector(".tempwrap");
+                      trendElement.className = trendElement.className.replace(
+                        "sb-icon-neutral",
+                        "sb-icon-profit"
+                      );
+                    }
+                  }
+                }
+              }
             }
           }
         }
-      },
+      }
     },
   };
 </script>
