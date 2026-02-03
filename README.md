@@ -1,22 +1,20 @@
 # 🧾 Vue 3 — Syncfusion PivotView cellTemplate (Vue CLI) Quick Start
 
-[![License](https://img.shields.io/github/license/SyncfusionExamples/vue3-pivottable-celltemplate)](./LICENSE) [![Last Commit](https://img.shields.io/github/last-commit/SyncfusionExamples/vue3-pivottable-celltemplate)]() [![Top Language](https://img.shields.io/github/languages/top/SyncfusionExamples/vue3-pivottable-celltemplate)]()
-
-_Last updated: 2026-02-03_
+This sample demonstrates using Vue 3 with Vite to integrate Syncfusion PivotView (Pivot Table) and customize pivot cells via the cellTemplate option. It includes Vite-based dev setup, examples for binding JSON or fetched data, and patterns for rendering lightweight HTML inside pivot cells (icons, badges, conditional styles). Designed as copy‑paste ready demos for dashboards and analytics UIs.
 
 ---
 
 ## 📚 Table of Contents
-- 🔎 Overview
-- ✨ Features
-- 🛠️ Requirements
-- ⚙️ Installation
-- 🚀 Quick Start
-- 🏗️ Project Structure
-- 🔧 Best Practices
-- ❓ Troubleshooting
-- 🤝 Contributing
-- 🔎 SEO & Metadata
+- [🔎 Overview](#-overview)
+- [✨ Key Features](#-key-features)
+- [🛠️ Requirements](#️-requirements)
+- [⚙️ Installation](#️-installation)
+- [🚀 Quick Start](#-quick-start)
+- [🏗️ Project Structure](#️-project-structure)
+- [🔧 Best Practices](#-best-practices)
+- [❓ Troubleshooting](#-troubleshooting)
+- [🤝 Contributing](#-contributing)
+- [📜 License & Support](#-license--support)
 
 ---
 
@@ -25,7 +23,7 @@ Demonstrates integrating Syncfusion PivotView (Pivot Table) with a custom cellTe
 
 ---
 
-## ✨ Features
+## ✨ key Features
 - Vue 3 SFC examples using cellTemplate
 - Bind local JSON or fetched API data
 - Define row/column/value/filter fields
@@ -158,34 +156,26 @@ Please add CONTRIBUTING.md and CODE_OF_CONDUCT.md. Suggested minimal PR template
 ## Summary
 - What changed?
 
-## Checklist
-- [ ] Tested locally
-- [ ] Updated docs
-- [ ] Linked issue (if any)
-```
+## 📜 License & Support
 
----
+This is a **commercial product** subject to the Syncfusion End User License Agreement (EULA).
 
-## 🔎 SEO & GitHub Metadata
-Suggested repo description (<=160 chars):  
-"Vue 3 demo showing Syncfusion PivotView cellTemplate usage for custom pivot cell rendering and conditional formatting."
+**Free Community License** is available for qualifying users/organizations:  
+- Annual gross revenue < $1 million USD  
+- 5 or fewer total developers  
+- 10 or fewer total employees  
 
-Suggested topics:  
-vue3, syncfusion, pivotview, pivot-table, cell-template, javascript, typescript, vue-cli, analytics, dashboard
+The community license allows free use in both internal and commercial applications under these conditions.  
+No registration or approval is required — just comply with the terms.
 
-Suggested hashtags:  
-#VueJS #Syncfusion #PivotTable #PivotView #DataViz #Dashboard #JavaScript #TypeScript
+**Paid Licenses** are required for:  
+- Larger organizations  
+- Teams exceeding the community license limits  
+- Priority support, custom patches, or on-premise deployment options  
 
-Recommended badges:
-```markdown
-[![License](https://img.shields.io/github/license/SyncfusionExamples/vue3-pivottable-celltemplate)](./LICENSE)
-[![Last Commit](https://img.shields.io/github/last-commit/SyncfusionExamples/vue3-pivottable-celltemplate)]()
-[![Top Language](https://img.shields.io/github/languages/top/SyncfusionExamples/vue3-pivottable-celltemplate)]()
-```
+Purchase options and pricing: https://www.syncfusion.com/sales/products  
+30-day free trial (full features, no credit card required): https://www.syncfusion.com/downloads/essential-js2  
+Community License details & FAQ: https://www.syncfusion.com/products/communitylicense  
+Full EULA: https://www.syncfusion.com/eula/es/
 
----
-
-## 📌 Next steps
-- Add sample dataset (JSON/CSV) and screenshots/GIFs.  
-- Add CONTRIBUTING.md, CODE_OF_CONDUCT.md, CI with badge, and issue/PR templates.  
-- Publish a live demo for faster adoption.
+© 2026 Syncfusion, Inc. All Rights Reserved.
