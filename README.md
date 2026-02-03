@@ -13,7 +13,6 @@ This sample demonstrates using Vue 3 with Vite to integrate Syncfusion PivotView
 - [🏗️ Project Structure](#️-project-structure)
 - [🔧 Best Practices](#-best-practices)
 - [❓ Troubleshooting](#-troubleshooting)
-- [🤝 Contributing](#-contributing)
 - [📜 License & Support](#-license--support)
 
 ---
@@ -149,12 +148,6 @@ const app = createApp();
 - CORS/API issues: enable CORS or use same-origin during testing.
 
 ---
-
-## 🤝 Contributing
-Please add CONTRIBUTING.md and CODE_OF_CONDUCT.md. Suggested minimal PR template:
-```markdown
-## Summary
-- What changed?
 
 ## 📜 License & Support
 
